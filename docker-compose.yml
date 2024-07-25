@@ -1,0 +1,33 @@
+services:
+  elexure-admin-client:
+    container_name: elexure-admin-client
+    build: ./elexure-admin
+    env_file:
+      - client.env
+    restart: always
+    depends_on:
+      - elexure-admin-api
+  elexure-admin-nginx:
+    container_name: elexure-admin-nginx
+    build: .
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - elexure-admin-client
+  elexure-admin-api:
+    container_name: elexure-admin-api
+    build: ./elexure-admin-backend
+    restart: always
+    env_file:
+      - api.env
+    depends_on:
+      - elexure-admin-db
+  elexure-admin-db:
+    container_name: elexure-admin-db
+    image: mysql:8.0
+    restart: always
+    env_file:
+      - db.env
+    volumes:
+      - ./db:/var/lib/mysql

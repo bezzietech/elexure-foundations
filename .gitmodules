@@ -1,0 +1,6 @@
+[submodule "elexure-admin"]
+	path = elexure-admin
+	url = git@github.com:bezzietech/elexure-admin.git
+[submodule "elexure-admin-backend"]
+	path = elexure-admin-backend
+	url = git@github.com:bezzietech/elexure-admin-backend.git
